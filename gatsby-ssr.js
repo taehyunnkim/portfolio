@@ -7,6 +7,15 @@
 /**
  * @type {import('gatsby').GatsbySSR['onRenderBody']}
  */
-exports.onRenderBody = ({ setHtmlAttributes }) => {
+
+const React = require("react")
+
+export function onRenderBody ({ setHtmlAttributes }) {
   setHtmlAttributes({ lang: `en` })
+}
+
+export function wrapPageElement({ element, props }) {
+  const Layout = element.Layout || React.Fragment
+  
+  return <Layout {...props}>{element}</Layout>
 }
